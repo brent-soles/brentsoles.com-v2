@@ -17,10 +17,8 @@ const NavBase = () => {
 
     const { primary, secondary } = mainProps;
 
-    const [selected, setSelected] = useState({
-        current: "home"
-    });
-
+    //Sets Up Nav Elements
+    const [selected, setSelected] = useState({current: "home"});
     const [nav, setCurrNav] = useState({
         home: {
             name: "home",
@@ -36,28 +34,32 @@ const NavBase = () => {
         }
     });
 
+    const updateCurrent = (id) => {
+        const { current } = selected;
+        // Prevent useless state re-update
+        if(id !== current && id){
+            setCurrNav({
+                ...nav,
+                [current]: {
+                    ...nav[current],
+                    selected: false
+                },
+                [id]: {
+                    ...nav[id],
+                    selected: true
+                }
+            });
+            setSelected({
+                current: id
+            });
+        }
+    }
+
     // Kinda Hacky wrapping everything in an <a> tag
     return (
         <NavWrapper onClick={e => {
             const { id } = e.target;
-            const { current } = selected;
-            // Prevent useless state re-update
-            if(id !== current && e.target.id){
-                setCurrNav({
-                    ...nav,
-                    [current]: {
-                        ...nav[current],
-                        selected: false
-                    },
-                    [id]: {
-                        ...nav[id],
-                        selected: true
-                    }
-                });
-                setSelected({
-                    current: id
-                });
-            }
+            updateCurrent(id);
         }
             }>
             <svg width="176" height="158" viewBox="0 0 176 158" fill="none" xmlns="http://www.w3.org/2000/svg">

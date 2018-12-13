@@ -1,6 +1,7 @@
 import React from 'react';
 import { MainPage } from './Layouts';
 import NavBase from './NavBase';
+import ContentHeader from './PageHeader';
 import styled from '@emotion/styled';
 
 
@@ -48,11 +49,29 @@ const GradientDiv = styled.div`
 
 const MainBanner = () => (
     <MainPage>
+        <NavBase />
         <GradientDiv {...gradientProps}>
             <h2>BRENT SOLES</h2>
             <h1>BRENT SOLES</h1>
         </GradientDiv>
-        <NavBase />
+        <ContentHeader 
+            imgSrc={'/static/images/brent-mq.jpg'}
+            alt={'muuuuuugshot'}
+            size={'14.4rem'}
+            pageName={`WHO I AM`}
+        />
+        <ContentHeader 
+            imgSrc={'/static/svgs/github.svg'}
+            alt={'prjs plz'}
+            size={'14.4rem'}
+            pageName={`PROJECTS`}
+        />
+        <ContentHeader 
+            imgSrc={'/static/svgs/code.svg'}
+            alt={'hire me'}
+            size={'14.4rem'}
+            pageName={`SERVICES`}
+        />
     </MainPage>
 )
 

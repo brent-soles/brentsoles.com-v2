@@ -8,6 +8,11 @@ injectGlobal`
         font-family: "POLYA";
         src: url("/static/fonts/POLYA.otf");
     }
+
+    @font-face {
+        font-family: "FARRAY";
+        src: url("/static/fonts/FARRAY.otf");
+    }
 `;
 
 export default class MyDocument extends Document {
