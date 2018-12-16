@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 const MainPageStyle = styled.div`
     display: grid;
-    grid-template-rows: 30rem auto;
+    grid-template-rows: 30rem repeat(3, 80rem);
 `;
 
 export const MainPage = (props) => (

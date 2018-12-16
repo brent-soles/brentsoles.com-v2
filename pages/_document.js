@@ -40,12 +40,6 @@ export default class MyDocument extends Document {
           <meta name="keywords" content="Javascript,Developer,Designer,Portland,OR,ReactJS,GraphQL,Node.js,C#"></meta>
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
           <style>{`* { margin: 0; padding: 0; font-size: 10px}/* custom! */`}</style>
-          {/* <style type="text/css" media="screen, print">{`
-                @font-face {
-                    font-family: "POLYA";
-                    src: url("/static/fonts/POLYA.otf");
-                }`
-            }</style> */}
           <link href="https://fonts.googleapis.com/css?family=Hind+Madurai:700" rel="stylesheet"></link>
         </Head>
         <body>

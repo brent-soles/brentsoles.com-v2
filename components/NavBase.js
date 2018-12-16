@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
+import NavBox from './NavBox'
 import styled from '@emotion/styled';
 
-const NavWrapper = styled.a`
+const NavWrapper = styled.nav`
     position: fixed;
     top: 6rem;
     right: 6rem;
-    
+    display: flex;
+    flex-direction: column;
+    margin: 0rem;
+    z-index: 1;
 `;
 
 const mainProps = {
@@ -36,7 +40,7 @@ const NavBase = () => {
 
     const updateCurrent = (id) => {
         const { current } = selected;
-        // Prevent useless state re-update
+        // Prevent state re-update for currently selected
         if(id !== current && id){
             setCurrNav({
                 ...nav,
@@ -55,20 +59,11 @@ const NavBase = () => {
         }
     }
 
-    // Kinda Hacky wrapping everything in an <a> tag
     return (
-        <NavWrapper onClick={e => {
-            const { id } = e.target;
-            updateCurrent(id);
-        }
-            }>
-            <svg width="176" height="158" viewBox="0 0 176 158" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0.0682373 58.635L175.068 118.447V157.43L0.0682373 98.3313V58.635Z" fill="#878787"/>
-                <path d="M0.46521 0.628174L175.465 60.4404V99.4232L0.46521 40.3245V0.628174Z" fill="#878787"/>
-                <path id={nav.home.name} d="M0.0681946 2.15457H175.068V42.1546H0.0681946V2.15457Z" fill={nav.home.selected ? secondary : primary} />
-                <path id={nav.projects.name} d="M0.0681946 59.4231H175.068V99.4231H0.0681946V59.4231Z" fill={nav.projects.selected ? secondary : primary}/>
-                <path id={nav.services.name} d="M0.0681946 117.43H175.068V157.43H0.0681946V117.43Z" fill={nav.services.selected ? secondary : primary}/>
-            </svg>
+        <NavWrapper onClick={e => updateCurrent(e.target.id)}>
+            <NavBox id={nav.home.name} fill={nav.home.selected ? secondary : primary}/>
+            <NavBox id={nav.projects.name} fill={nav.projects.selected ? secondary : primary}/>
+            <NavBox id={nav.services.name} fill={nav.services.selected ? secondary : primary}/>
         </NavWrapper>
     );
 }

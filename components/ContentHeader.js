@@ -4,11 +4,11 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { ImgIcon, SvgIcon } from './Icons'
 
-const ContentDiv = styled.div`
-    width: inherit;
-    margin: 2rem 6rem;
+const ContentHeaderContainer = styled.div`
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    position: absolute;
 `;
 
 const PageName = styled.h1`
@@ -21,15 +21,14 @@ const PageName = styled.h1`
     line-height: 28px;
     color: #878787;
     padding-top: 6rem;
-    
     border-left: 3px solid #C6C6C6
 `
 
-const ContentHeader = ({imgSrc, alt, pageName, size}) => (
-    <ContentDiv>
+const ContentHeader = ({id, imgSrc, alt, pageName, size}) => (
+    <ContentHeaderContainer id={id} name={id}>
         <ImgIcon src={imgSrc} alt={alt} height={size} width={size} />
         <PageName>{pageName}</PageName>
-    </ContentDiv>
+    </ContentHeaderContainer>
 )
 
 export default ContentHeader;

@@ -1,8 +1,10 @@
 import React from 'react';
 import { MainPage } from './Layouts';
 import NavBase from './NavBase';
-import ContentHeader from './PageHeader';
+import Content from './Content';
+import GitHubHOC from './Projects';
 import styled from '@emotion/styled';
+import GithubHOC from './Projects';
 
 
 const gradientProps = {
@@ -47,32 +49,39 @@ const GradientDiv = styled.div`
     }
 `;
 
-const MainBanner = () => (
-    <MainPage>
-        <NavBase />
-        <GradientDiv {...gradientProps}>
-            <h2>BRENT SOLES</h2>
-            <h1>BRENT SOLES</h1>
-        </GradientDiv>
-        <ContentHeader 
-            imgSrc={'/static/images/brent-mq.jpg'}
-            alt={'muuuuuugshot'}
-            size={'14.4rem'}
-            pageName={`WHO I AM`}
-        />
-        <ContentHeader 
-            imgSrc={'/static/svgs/github.svg'}
-            alt={'prjs plz'}
-            size={'14.4rem'}
-            pageName={`PROJECTS`}
-        />
-        <ContentHeader 
-            imgSrc={'/static/svgs/code.svg'}
-            alt={'hire me'}
-            size={'14.4rem'}
-            pageName={`SERVICES`}
-        />
-    </MainPage>
-)
+const MainBanner = ({ projects }) => {
+    return (
+        <MainPage>
+            <NavBase />
+            <GradientDiv {...gradientProps}>
+                <h2>BRENT SOLES</h2>
+                <h1>BRENT SOLES</h1>
+            </GradientDiv>
+            <Content 
+                id={"home"}
+                imgSrc={'/static/images/brent-mq.jpg'}
+                alt={'muuuuuugshot'}
+                size={'14.4rem'}
+                pageName={`WHO I AM`}
+            ></Content>
+            <Content 
+                id={"projects"}
+                imgSrc={'/static/svgs/github.svg'}
+                alt={'prjs plz'}
+                size={'14.4rem'}
+                pageName={`PROJECTS`}
+            >
+                <GithubHOC projects={projects} />
+            </Content>
+            <Content 
+                id={"services"}
+                imgSrc={'/static/svgs/code.svg'}
+                alt={'hire me'}
+                size={'14.4rem'}
+                pageName={`SERVICES`}
+            ></Content>
+        </MainPage>
+    )
+}
 
 export default MainBanner;
