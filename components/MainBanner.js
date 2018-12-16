@@ -49,10 +49,26 @@ const GradientDiv = styled.div`
     }
 `;
 
+const H1 = styled.h1`
+    font-family: FARRAY;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 2.4rem;
+    line-height: 28px;
+    color: #878787;
+    padding-top: 6rem;
+`
+const P = styled.p`
+    margin-top: 6rem;
+    font-size: 2rem;
+    font-family: Helvetica;
+    color: #878787;
+`;
+
 const MainBanner = ({ projects }) => {
     return (
         <MainPage>
-            <NavBase />
+            {/* <NavBase /> */}
             <GradientDiv {...gradientProps}>
                 <h2>BRENT SOLES</h2>
                 <h1>BRENT SOLES</h1>
@@ -63,7 +79,23 @@ const MainBanner = ({ projects }) => {
                 alt={'muuuuuugshot'}
                 size={'14.4rem'}
                 pageName={`WHO I AM`}
-            ></Content>
+            >
+                <H1>I'm a Christian, a developer and an aspiring designer</H1>
+                <P>I am based out of Portland, OR; and have lived in the PNW for the past 3 years.
+                    <br></br><br></br>
+                    My first passion in life is my faith. I am a Christian, soon-to-be husband, and total nerd. I even have the glasses to prove it!
+                    <br></br><br></br>
+                    My expertise is in fullstack development, with an emphsis on React, Node.js and MongoDB.
+
+                    In this site you'll find some of my personal projects, as well as some services I offer as a freelancer (soon hopefull a blog!).
+                    <br></br><br></br>
+                    If you'd like to reach out, I'd love to talk with you! There is a form at the bottom of the page.
+                    <br></br><br></br>
+                    God bless, and thank you for taking the time to read!
+                    <br></br><br></br>
+                    - Brent
+                </P>
+            </Content>
             <Content 
                 id={"projects"}
                 imgSrc={'/static/svgs/github.svg'}
