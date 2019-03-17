@@ -68,7 +68,6 @@ const P = styled.p`
 const MainBanner = ({ projects }) => {
     return (
         <MainPage>
-            {/* <NavBase /> */}
             <GradientDiv {...gradientProps}>
                 <h2>BRENT SOLES</h2>
                 <h1>BRENT SOLES</h1>

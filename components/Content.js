@@ -17,17 +17,18 @@ export const ContentBody = styled.div`
     margin: 0px auto;
     display: flex;
     flex-wrap: wrap;
-    position: absolute;
+    
 `;
 
 
 const Content = (props) => {
     return (
         <ContentContainer>
-            <ContentHeader {...props}/>
-            <ContentBody >
-                {!!props.children && props.children}
-            </ContentBody>
+            <ContentHeader {...props}>
+              <ContentBody >
+                  {!!props.children && props.children}
+              </ContentBody>
+            </ContentHeader>
         </ContentContainer>
     )
 }

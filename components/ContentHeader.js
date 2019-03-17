@@ -8,7 +8,7 @@ const ContentHeaderContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
-    position: absolute;
+    
 `;
 
 const PageName = styled.h1`
@@ -24,9 +24,10 @@ const PageName = styled.h1`
     border-left: 3px solid #C6C6C6
 `
 
-const ContentHeader = ({id, imgSrc, alt, pageName, size}) => (
+const ContentHeader = ({id, imgSrc, alt, pageName, size, children}) => (
     <ContentHeaderContainer id={id} name={id}>
         <ImgIcon src={imgSrc} alt={alt} height={size} width={size} />
+        {children}
         <PageName>{pageName}</PageName>
     </ContentHeaderContainer>
 )
