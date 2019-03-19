@@ -16,10 +16,12 @@ export const ContentContainer = styled.div`
       grid-template-columns: 18rem 1fr 18rem;
     }
 
+    // md
     @media (max-width: 1200px) and (min-width: 440px) {
       grid-template-columns: 1fr 1fr;
     }
 
+    // small
     @media (max-width: 439px) {
       margin: 2rem 0rem;
       padding: 1rem;
@@ -45,11 +47,6 @@ export const ContentBody = styled.div`
       grid-row: 2;
     }
 
-    // @media (max-width: 407px) {
-    //   grid-column-start: 1;
-    //   grid-column-end: 3;
-    //   grid-row: 2;
-    // }
 `;
 
 
@@ -79,17 +76,17 @@ const PageName = styled.h1`
 `;
 
 const Content = ({ id, imgSrc, alt, pageName, size, children }) => {
-    return (
-        <ContentContainer id={id}>
-            {/* <ContentHeader {...props} /> */}
-            <ImgIcon src={imgSrc} alt={alt} height={size} width={size} />
-            
-            <ContentBody >
-                  {!!children && children}
-            </ContentBody>
-            <PageName>{pageName}</PageName>
-        </ContentContainer>
-    )
+  return (
+    <ContentContainer id={id}>
+
+      <ImgIcon src={imgSrc} alt={alt} height={size} width={size} />
+
+      <ContentBody >
+        {!!children && children}
+      </ContentBody>
+      <PageName>{pageName}</PageName>
+    </ContentContainer>
+  )
 }
 
 export default Content;
