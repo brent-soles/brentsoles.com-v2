@@ -7,6 +7,11 @@ const Img = styled.img`
     height: ${props => props.height ? props.height : '1rem'};
     width: ${props => props.width ? props.width : '1rem'};
     border-radius: ${props => props.height};
+
+    @media (max-width: 1201px) {
+      margin-left: auto;
+      margin-right: 2.5rem;
+    }
 `;
 
 export const ImgIcon = ({src, alt, height, width}) => ( <Img src={src} alt={alt} height={height} width={width} /> )

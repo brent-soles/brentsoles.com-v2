@@ -6,7 +6,7 @@ const ProjectCard = styled.a`
     height: 17.4rem;
     margin: .3rem;
     border-radius: .2rem;
-    box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, .2);
+    box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, .2);
 
     display: grid;
     grid-template-rows: 5rem auto 2rem;
@@ -36,10 +36,17 @@ const ProjectCard = styled.a`
         font-size: 1.5rem;
     }
 
+    @media (max-width: 762px) {
+      width: 23.95rem;
+    }
+
+    @media (max-width: 408px) {
+      width: 35.4rem;
+    }
 `;
 
 const GithubHOC = ({ projects }) => {
-    return projects.map( (prj, index) => {
+    return projects.map((prj, index) => {
             const { name, html_url, description, language } = prj;
             return (
                 <ProjectCard key={index} href={html_url}>

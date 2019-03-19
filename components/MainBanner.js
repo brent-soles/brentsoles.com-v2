@@ -8,45 +8,51 @@ import GithubHOC from './Projects';
 
 
 const gradientProps = {
-    primary: '#BB6BD9',
-    secondary: '#A8F6D1'
+  primary: '#BB6BD9',
+  secondary: '#A8F6D1'
 }
 
 const GradientDiv = styled.div`
+  position: relative;
+  width: 100%;
+  background: ${({ primary, secondary }) => `linear-gradient(137deg, ${primary} 32%, ${secondary} 100%)`};
 
-    width: 100%;
-    background: ${({primary, secondary}) => `linear-gradient(137deg, ${primary} 32%, ${secondary} 100%)`};
+  * {
+    position: absolute;
+  }
+`;
 
-    display: flex;
-    justify-content: center;
+const BannerH1 = styled.h1`
+  max-width: 40rem;
+  min-width: 30rem;
+  margin: 0px auto;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, .9);
+  font-family: POLYA;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 14.5rem;
+  font-size: 8.65rem;
+  text-align: center;
+  letter-spacing: 0.075em;
+`;
 
-    h1 {
-        position: absolute;
-        top: -6.2rem;
-        width: 60rem;
-        color: white;
-        font-family: POLYA;
-        font-style: normal;
-        font-weight: normal;
-        line-height: 20.5rem;
-        font-size: 14.4rem;
-        text-align: center;
-        letter-spacing: 0.07em;
-    }
-
-    h2 {
-        position: absolute;
-        text-align: center;
-        color: #878787;
-        width: 60rem;
-        text-align: center;
-        font-family: POLYA;
-        font-weight: normal;
-        font-size: 9.6rem;
-        line-height: 11.2rem;
-        margin-top: 4rem;
-        letter-spacing: 0.07em;
-    }
+const BannerH2 = styled.h2`
+  width: 30rem;
+  min-width: 20rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  color: rgba(0, 0, 0, .2);
+  font-family: POLYA;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 7.25rem;
+  font-size: 7.25rem;
+  text-align: center;
+  letter-spacing: 0.075em;
+  filter: blur(2px);
 `;
 
 const H1 = styled.h1`
@@ -56,7 +62,6 @@ const H1 = styled.h1`
     font-size: 2.4rem;
     line-height: 28px;
     color: #878787;
-    padding-top: 6rem;
 `
 const P = styled.p`
     margin-top: 6rem;
@@ -66,53 +71,61 @@ const P = styled.p`
 `;
 
 const MainBanner = ({ projects }) => {
-    return (
-        <MainPage>
-            <GradientDiv {...gradientProps}>
-                <h2>BRENT SOLES</h2>
-                <h1>BRENT SOLES</h1>
-            </GradientDiv>
-            <Content 
-                id={"home"}
-                imgSrc={'/static/images/brent-mq.jpg'}
-                alt={'muuuuuugshot'}
-                size={'14.4rem'}
-                pageName={`WHO I AM`}
-            >
-                <H1>I'm a Christian, a developer and an aspiring designer</H1>
-                <P>I am based out of Portland, OR; and have lived in the PNW for the past 3 years.
-                    <br></br><br></br>
-                    My first passion in life is my faith. I am a Christian, soon-to-be husband, and total nerd. I even have the glasses to prove it!
-                    <br></br><br></br>
-                    My expertise is in fullstack development, with an emphsis on React, Node.js and MongoDB.
-
-                    In this site you'll find some of my personal projects, as well as some services I offer as a freelancer (soon hopefull a blog!).
-                    <br></br><br></br>
-                    If you'd like to reach out, I'd love to talk with you! There is a form at the bottom of the page.
-                    <br></br><br></br>
-                    God bless, and thank you for taking the time to read!
-                    <br></br><br></br>
-                    - Brent
-                </P>
-            </Content>
-            <Content 
-                id={"projects"}
-                imgSrc={'/static/svgs/github.svg'}
-                alt={'prjs plz'}
-                size={'14.4rem'}
-                pageName={`PROJECTS`}
-            >
-                <GithubHOC projects={projects} />
-            </Content>
-            <Content 
-                id={"services"}
-                imgSrc={'/static/svgs/code.svg'}
-                alt={'hire me'}
-                size={'14.4rem'}
-                pageName={`SERVICES`}
-            ></Content>
-        </MainPage>
-    )
+  return (
+    <MainPage>
+      <GradientDiv {...gradientProps}>
+        <BannerH1>
+          BRENT SOLES
+              </BannerH1>
+        <BannerH2>
+          BRENT SOLES
+              </BannerH2>
+      </GradientDiv>
+      <Content
+        id={"about"}
+        imgSrc={'/static/images/brent-mq.jpg'}
+        alt={'muuuuuugshot'}
+        size={'14.4rem'}
+        pageName={`WHO I AM`}
+      >
+        <H1>I'm a Christian, a developer and an aspiring designer</H1>
+        <P>
+          I am based out of Portland, OR; and have lived in the PNW for the past 3 years.
+          My first passion in life is my faith. I am a Christian, soon-to-be husband, and total nerd. 
+          I even have the glasses to prove it!
+        </P>
+        <P>
+          My expertise is in fullstack development, with an emphsis on React, Node.js and MongoDB.
+          In this site you'll find some of my personal projects, as well as some services I offer as a freelancer (soon hopefull a blog!).
+        </P>
+        <P>
+          If you'd like to reach out, I'd love to talk with you! There is a form at the bottom of the page.
+        </P>
+        <P>
+          God bless, and thank you for taking the time to read!
+        </P>
+        <P>
+          - Brent
+        </P>
+      </Content>
+      <Content
+        id={"projects"}
+        imgSrc={'/static/svgs/github.svg'}
+        alt={'prjs plz'}
+        size={'14.4rem'}
+        pageName={`PROJECTS`}
+      >
+        <GithubHOC projects={projects} />
+      </Content>
+      {/* <Content
+        id={"services"}
+        imgSrc={'/static/svgs/code.svg'}
+        alt={'hire me'}
+        size={'14.4rem'}
+        pageName={`SERVICES`}
+      ></Content> */}
+    </MainPage>
+  )
 }
 
 export default MainBanner;
