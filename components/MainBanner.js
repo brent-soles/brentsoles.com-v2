@@ -10,12 +10,11 @@ import { cards } from '../content/cards'
 const Card = styled.div`
   border-radius: 12px;
   align-items: center;
-  background: yellow;
-  max-width: 50%;
-  min-width: 500px;
+  
+  min-width: 33%;
+  max-width: 33%;
   min-height: 500px;
   margin: 0px auto;
-  margin-top: -6%;
   
   display: flex;
   flex-direction: column;
@@ -27,20 +26,54 @@ const Card = styled.div`
   &:hover {
     box-shadow: 0px 3px 12px 1px rgba(0, 0, 0, .3);
   }
+
+  @media (max-width: 1330px) {
+    min-width: 66%;
+    max-width: 66%;
+  }
 `;
 
-const FullCard = ({ imgSrc, }) => {
-  
-  return (
-    <Card>
+const SecondaryCard = (props) => {
+  const [hover, setHover] = React.useState(false);
+  const [screenSmall, setScreenSmall] = React.useState(false);
 
+  React.useEffect(() => {
+    const handleResize = () => {
+      if(window) {
+        if(window.innerWidth < 600){
+          setScreenSmall(true);
+          return;
+        }
+
+        setScreenSmall(false);
+      }
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    }
+  }, [screenSmall])
+
+  return (
+    <Card
+      style={{
+        ...props.styles,
+        // transform: screenSmall ? 
+        opacity: hover ? .5 : .27 
+      }}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      onClick={props.onClick ? props.onClick : () => null}
+    >
+      {props.children}
     </Card>
   )
 }
 
 const StackCarousel = ({ items }) => {
   const [order, setOrder] = React.useState(items);
-  const [hover, setHover] = React.useState(false);
 
   const handleClick = (i) => {
     let first = order[0];
@@ -55,20 +88,40 @@ const StackCarousel = ({ items }) => {
     setOrder([...arr]);
   }
 
+  React.useEffect(() => {
+    const handleKeyDown = (e) => {
+      switch(e.key){
+        case 'ArrowLeft':
+          handleClick(1);
+          break;
+        case 'ArrowRight':
+          handleClick(2);
+          break;
+        default:
+          return;
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      console.log('removing');
+      document.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [order]);
+
   return (
     <>
       {order.map((el, i) => {
         if (i > 0 ) {
           return (
-            <Card
+            <SecondaryCard
               key={i}
-              style={{ ...el.style, ...el.positioning, opacity: hover ? .5 : .27 }}
-              onMouseEnter={() => setHover(true)}
-              onMouseLeave={() => setHover(false)}
+              styles={{ ...el.style, ...el.positioning}}
               onClick={() => handleClick(i)}
             >
               <img src={el.imgSrc} height="100px"></img>
-            </Card>
+            </SecondaryCard>
           )
 
         }
@@ -95,16 +148,20 @@ const MainBanner = ({ projects }) => {
       <img src="/static/main-header-2.svg" style={{width: '100%', position: 'relative', zIndex: 9}}></img>
       <div
         style={{
-          background: 'red',
+          marginTop: '-6%;',
           width: '100%',
-          // display: 'flex',
-          // flexDirection: 'row',
+          height: '55rem',
           position: 'relative',
-          // paddingLeft: '39%'
+          overflowX: 'hidden'
         }}
       >
         <StackCarousel items={cards} />
       </div>
+      <p
+        style={{
+          textAlign: 'center'
+        }}
+      >use arrow keys to move tiles</p>
     </>
   )
 }

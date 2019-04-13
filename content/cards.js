@@ -1,5 +1,6 @@
 const sharedBackGroundStyles = {
   position: 'absolute',
+  boxShadow: '0px 6px 12px 1px rgba(0, 0, 0, .6)',
   backgroundColor: 'rgba(0, 0, 0, .1)',
   zIndex: 8,
   opacity: .27,
@@ -38,7 +39,6 @@ export const cards = [
     imgSrc: '/static/svgs/code.svg',
     heading: 'Right',
     style: {
-      
     },
     positioning: {
       ...sharedBackGroundStyles,
