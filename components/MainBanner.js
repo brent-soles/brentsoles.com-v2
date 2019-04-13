@@ -39,6 +39,21 @@ const FullCard = ({ imgSrc, }) => {
 
 const StackCarousel = ({ items }) => {
   const [order, setOrder] = React.useState(items);
+  const [hover, setHover] = React.useState(false);
+
+  const handleClick = (i) => {
+    let first = order[0];
+    let replace = order[i];
+    let arr = order;
+    // Switch styling/positoning
+    let tmpPos = first.positioning;
+    first.positioning = replace.positioning;
+    replace.positioning = tmpPos;
+    arr.splice(0, 1, replace);
+    arr.splice(i, 1, first);
+    setOrder([...arr]);
+  }
+
   return (
     <>
       {order.map((el, i) => {
@@ -46,19 +61,10 @@ const StackCarousel = ({ items }) => {
           return (
             <Card
               key={i}
-              style={{ ...el.style, ...el.positioning }}
-              onClick={() => {
-                let first = order[0];
-                let replace = order[i];
-                let arr = order;
-                // Switch styling/positoning
-                let tmpPos = first.positioning;
-                first.positioning = replace.positioning;
-                replace.positioning = tmpPos;
-                arr.splice(0, 1, replace);
-                arr.splice(i, 1, first);
-                setOrder([...arr]);
-              }}
+              style={{ ...el.style, ...el.positioning, opacity: hover ? .5 : .27 }}
+              onMouseEnter={() => setHover(true)}
+              onMouseLeave={() => setHover(false)}
+              onClick={() => handleClick(i)}
             >
               <img src={el.imgSrc} height="100px"></img>
             </Card>
