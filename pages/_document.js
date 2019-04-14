@@ -13,6 +13,8 @@ injectGlobal`
         font-family: "FARRAY";
         src: url("/static/fonts/FARRAY.otf");
     }
+
+    @import url('https://fonts.googleapis.com/css?family=Nunito|Playfair+Display');
 `;
 
 export default class MyDocument extends Document {

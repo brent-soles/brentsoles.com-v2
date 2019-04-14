@@ -11,7 +11,14 @@ const sharedBackGroundStyles = {
 export const cards = [
   {
     imgSrc: "/static/images/brent-lq.jpg",
-    heading: 'Center',
+    header: 'Hello.',
+    content: {
+      summary: 'My name is Brent and I am a developer/desginer based in Portland, OR. If you would like to know more about me, please reach out and connect!',
+      points: [
+        { title: 'email', description: 'brentsoles@protonmail.com' },
+        { title: 'linkedin', description: 'https://lbah'}
+      ]
+    },
     style: {
     
     },
@@ -26,7 +33,15 @@ export const cards = [
   },
   {
     imgSrc: '/static/svgs/github.svg',
-    heading: 'Left',
+    header: 'Projects.',
+    content: {
+      summary: 'Some projects I have worked on and are continuing to develop:',
+      points: [
+        { title: 'Reeych', description: 'A ministry communication tool for churches.' },
+        { title: 'funnl', description: 'A \'funcitonal\' utility for result piping.' },
+        { title: 'aleve', description: 'A cli server for quickly prototyping HTML/CSS/JS' }
+      ]
+    },
     style: {
     },
     positioning: {
@@ -37,7 +52,15 @@ export const cards = [
   },
   {
     imgSrc: '/static/svgs/code.svg',
-    heading: 'Right',
+    header: 'Tech.',
+    content: {
+      summary: 'Here are some of the technologies I work with and love to use:',
+      points: [
+        { title: 'ReactJS', description: '1yr.'},
+        { title: 'Node.js', description: '2yr.'},
+        { title: 'Elixir', description: '6mo.'}
+      ]
+    },
     style: {
     },
     positioning: {

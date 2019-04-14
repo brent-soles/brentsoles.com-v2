@@ -16,18 +16,21 @@ const Card = styled.div`
   min-height: 500px;
   margin: 0px auto;
   
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
   
-  z-index: 10;
-
   transition: .25s ease-in-out;
   &:hover {
     box-shadow: 0px 3px 12px 1px rgba(0, 0, 0, .3);
   }
 
   @media (max-width: 1330px) {
+    min-width: 45%;
+    max-width: 45%;
+  }
+
+  @media (max-width: 1000px) {
     min-width: 66%;
     max-width: 66%;
   }
@@ -35,26 +38,6 @@ const Card = styled.div`
 
 const SecondaryCard = (props) => {
   const [hover, setHover] = React.useState(false);
-  const [screenSmall, setScreenSmall] = React.useState(false);
-
-  React.useEffect(() => {
-    const handleResize = () => {
-      if(window) {
-        if(window.innerWidth < 600){
-          setScreenSmall(true);
-          return;
-        }
-
-        setScreenSmall(false);
-      }
-    }
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    }
-  }, [screenSmall])
 
   return (
     <Card
@@ -71,6 +54,70 @@ const SecondaryCard = (props) => {
     </Card>
   )
 }
+
+
+
+
+
+const CardContent = styled.div`
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 20rem auto;
+  margin: 0px auto;
+  width: 90%;
+
+  header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  
+  
+  header > h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    min-width: 100px;
+  }
+
+  header > * {
+    margin: auto 20px;
+  }
+
+  section {
+    overflow: scroll;
+  }
+
+  section * {
+    font-family: 'Nunito', sans-serif;
+    font-size: 2rem;
+  }
+
+  ul {
+    margin: 6.5rem 0;
+    list-style-type: none;
+  }
+
+  li {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem 0;
+  }
+
+  li > *:first-child {
+    margin-right: 1rem;
+  }
+
+  @media (max-width: 800px) {
+    header > * {
+      margin: auto 10px;
+    }
+  }
+
+`;
+
+
+
 
 const StackCarousel = ({ items }) => {
   const [order, setOrder] = React.useState(items);
@@ -120,7 +167,27 @@ const StackCarousel = ({ items }) => {
               styles={{ ...el.style, ...el.positioning}}
               onClick={() => handleClick(i)}
             >
-              <img src={el.imgSrc} height="100px"></img>
+              <CardContent>
+                <header>
+                  <img 
+                    src={el.imgSrc} 
+                    height="100px"
+                    style={{borderRadius: '100px'}}
+                  ></img>
+                  <h1>{el.header}</h1>
+                </header>
+                <section>
+                  <p>{el.content.summary}</p>
+                  <ul>
+                    {el.content.points.map((el, i) => {
+                      return <li key={(i+10)*i}>
+                        <h3>{el.title}</h3>
+                        <p>{el.description}</p>
+                      </li>
+                    })}
+                  </ul>
+                </section>
+              </CardContent>
             </SecondaryCard>
           )
 
@@ -131,7 +198,27 @@ const StackCarousel = ({ items }) => {
             key={i}
             style={{ ...el.style, ...el.positioning }}
           >
-            <img src={el.imgSrc} height="100px"></img>
+            <CardContent>
+              <header>
+                  <img 
+                    src={el.imgSrc} 
+                    height="100px"
+                    style={{borderRadius: '100px'}}
+                  ></img>
+                  <h1>{el.header}</h1>
+                </header>
+                <section>
+                  <p>{el.content.summary}</p>
+                  <ul>
+                    {el.content.points.map((el, i) => {
+                      return <li key={(i+10)*i}>
+                        <h3>{el.title}</h3>
+                        <p>{el.description}</p>
+                      </li>
+                    })}
+                  </ul>
+                </section>
+              </CardContent>
           </Card>
         )
       })}
@@ -148,9 +235,10 @@ const MainBanner = ({ projects }) => {
       <img src="/static/main-header-2.svg" style={{width: '100%', position: 'relative', zIndex: 9}}></img>
       <div
         style={{
-          marginTop: '-6%;',
+          marginTop: '-6%',
+          paddingTop: '.6rem',
           width: '100%',
-          height: '55rem',
+          height: '66rem',
           position: 'relative',
           overflowX: 'hidden'
         }}
