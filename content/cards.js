@@ -15,10 +15,13 @@ export const cards = [
     content: {
       summary: 'My name is Brent and I am a developer/desginer based in Portland, OR. If you would like to know more about me, please reach out and connect!',
       points: [
-        { title: 'email', description: 'brentsoles@protonmail.com' },
+        { 
+          title: 'email', 
+          description: 'brentsoles@protonmail.com' 
+        },
         { 
           title: 'linkedin', 
-          description: 'https://' 
+          description: 'https://www.linkedin.com/in/brentsoles/' 
         }
       ]
     },
@@ -42,7 +45,7 @@ export const cards = [
       points: [
         { 
           title: 'reeych', 
-          description: 'A ministry communication tool for churches.' 
+          description: 'A ministry communication tool for churches.'
         },
         { 
           title: 'funnl', 
