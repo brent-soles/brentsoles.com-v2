@@ -1,10 +1,6 @@
 import React from 'react';
-import { MainPage } from './Layouts';
-import NavBase from './NavBase';
-import Content from './Content';
-import GitHubHOC from './Projects';
 import styled from '@emotion/styled';
-import GithubHOC from './Projects';
+
 import { cards } from '../content/cards'
 
 const Card = styled.div`
@@ -15,10 +11,6 @@ const Card = styled.div`
   max-width: 33%;
   min-height: 500px;
   margin: 0px auto;
-  
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
   
   transition: .25s ease-in-out;
   &:hover {
@@ -43,7 +35,6 @@ const SecondaryCard = (props) => {
     <Card
       style={{
         ...props.styles,
-        // transform: screenSmall ? 
         opacity: hover ? .5 : .27 
       }}
       onMouseEnter={() => setHover(true)}
@@ -71,13 +62,10 @@ const CardContent = styled.div`
     flex-direction: row;
     justify-content: center;
   }
-
-  
   
   header > h1 {
     font-family: 'Playfair Display', serif;
     font-size: 3rem;
-    min-width: 100px;
   }
 
   header > * {
@@ -89,7 +77,7 @@ const CardContent = styled.div`
   }
 
   section * {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 2rem;
   }
 
@@ -101,7 +89,7 @@ const CardContent = styled.div`
   li {
     display: flex;
     flex-direction: row;
-    margin: 1rem 0;
+    margin: 2rem 0;
   }
 
   li > *:first-child {
@@ -109,8 +97,16 @@ const CardContent = styled.div`
   }
 
   @media (max-width: 800px) {
+    header {
+      flex-direction: column;
+      justify-content: center;
+    }
     header > * {
       margin: auto 10px;
+    }
+
+    li {
+      flex-direction: column;
     }
   }
 
@@ -126,7 +122,6 @@ const StackCarousel = ({ items }) => {
     let first = order[0];
     let replace = order[i];
     let arr = order;
-    // Switch styling/positoning
     let tmpPos = first.positioning;
     first.positioning = replace.positioning;
     replace.positioning = tmpPos;
@@ -135,19 +130,25 @@ const StackCarousel = ({ items }) => {
     setOrder([...arr]);
   }
 
-  React.useEffect(() => {
-    const handleKeyDown = (e) => {
-      switch(e.key){
-        case 'ArrowLeft':
-          handleClick(1);
-          break;
-        case 'ArrowRight':
-          handleClick(2);
-          break;
-        default:
-          return;
-      }
+  const handleKeyDown = ({ key }) => {
+    let arr = order;
+    let positionStyles = order.map(el => el.positioning);
+    if(key === 'ArrowRight'){
+      let first = arr.shift();
+      arr.push(first);
+    } else if (key === 'ArrowLeft') {
+      const last = arr.pop();
+      arr.unshift(last);
     }
+    // Sets new styles for newly positioned
+    // elements
+    arr.forEach((_, i) => {
+      arr[i].positioning = positionStyles[i];
+    })
+    setOrder([...arr]);
+  }
+
+  React.useEffect(() => {
 
     document.addEventListener('keydown', handleKeyDown);
 
@@ -172,6 +173,7 @@ const StackCarousel = ({ items }) => {
                   <img 
                     src={el.imgSrc} 
                     height="100px"
+                    width="100px"
                     style={{borderRadius: '100px'}}
                   ></img>
                   <h1>{el.header}</h1>
@@ -203,6 +205,7 @@ const StackCarousel = ({ items }) => {
                   <img 
                     src={el.imgSrc} 
                     height="100px"
+                    width="100px"
                     style={{borderRadius: '100px'}}
                   ></img>
                   <h1>{el.header}</h1>
@@ -228,7 +231,6 @@ const StackCarousel = ({ items }) => {
 
 
 const MainBanner = ({ projects }) => {
-
 
   return (
     <>

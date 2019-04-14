@@ -16,11 +16,14 @@ export const cards = [
       summary: 'My name is Brent and I am a developer/desginer based in Portland, OR. If you would like to know more about me, please reach out and connect!',
       points: [
         { title: 'email', description: 'brentsoles@protonmail.com' },
-        { title: 'linkedin', description: 'https://lbah'}
+        { 
+          title: 'linkedin', 
+          description: 'https://' 
+        }
       ]
     },
     style: {
-    
+
     },
     positioning: {
       backgroundColor: '#fff',
@@ -37,9 +40,18 @@ export const cards = [
     content: {
       summary: 'Some projects I have worked on and are continuing to develop:',
       points: [
-        { title: 'Reeych', description: 'A ministry communication tool for churches.' },
-        { title: 'funnl', description: 'A \'funcitonal\' utility for result piping.' },
-        { title: 'aleve', description: 'A cli server for quickly prototyping HTML/CSS/JS' }
+        { 
+          title: 'reeych', 
+          description: 'A ministry communication tool for churches.' 
+        },
+        { 
+          title: 'funnl', 
+          description: 'A \'funcitonal\' utility for result piping.' 
+        },
+        { 
+          title: 'aleve', 
+          description: 'A cli server for quickly prototyping HTML/CSS/JS' 
+        }
       ]
     },
     style: {
@@ -47,7 +59,7 @@ export const cards = [
     positioning: {
       ...sharedBackGroundStyles,
       transform: 'translate(-113%, 17%) scale(0.7)',
-      
+
     }
   },
   {
@@ -56,9 +68,18 @@ export const cards = [
     content: {
       summary: 'Here are some of the technologies I work with and love to use:',
       points: [
-        { title: 'ReactJS', description: '1yr.'},
-        { title: 'Node.js', description: '2yr.'},
-        { title: 'Elixir', description: '6mo.'}
+        { 
+          title: 'ReactJS', 
+          description: '1yr.' 
+        },
+        { 
+          title: 'Node.js', 
+          description: '2yr.' 
+        },
+        { 
+          title: 'Elixir', 
+          description: '6mo.' 
+        }
       ]
     },
     style: {
